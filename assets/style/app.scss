@@ -1,0 +1,26 @@
+// Load custom Foundation variables
+@import "./settings";
+// Load Foundation
+@import "../../node_modules/foundation-sites/scss/foundation";
+//Init Foundation
+@import "./global";
+
+$primary: #D25A53;
+$secondary: #91B958;
+$success: #67AC5C;
+$warn: #FCECB9;
+$accent: #212121;
+$error: #C3291C;
+$info: #4995EC;
+
+a, button{
+    cursor: pointer;
+}
+
+.input-group__input{
+    border-bottom: 1px solid #ccc;    
+}
+
+.radio-group .input-group__input{
+    border-bottom: none;
+}
