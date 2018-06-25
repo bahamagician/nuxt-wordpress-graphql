@@ -1,0 +1,20 @@
+{
+topMenu: menus (where:{location:TOP}) {
+    menu: nodes {
+      items:menuItems {
+          item:nodes {
+              id
+            label
+            pageInfo:connectedObject {
+              ... on Page {
+                      slug
+                      }
+            }
+          }
+
+      }
+    }
+}
+}
+
+

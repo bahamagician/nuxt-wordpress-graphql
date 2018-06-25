@@ -6,9 +6,10 @@
         <img src="/v.png" alt="Vuetify.js" class="mb-5" />
       </div>
       <v-card>
+        <div v-if="$apollo.loading">Loading...</div>
         <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text v-for="blog in blogs" :key="blog.id">
-          <p>{{ blog.title }}</p>
+        <v-card-text v-for="item in menu" :key="item.id">
+         <a :href="`pages/${item.pageInfo.slug}`">{{ item.label }}</a>
         </v-card-text>
       </v-card>
     </v-flex>
@@ -16,16 +17,22 @@
 </template>
 <script>
 import gql from "graphql-tag";
-
+import menu from "~/apollo/queries/menu.gql"
 export default {
+  data: () => {
+    return {
+      menu: ''
+    }
+  },
   apollo: {
-    blogs: gql`{
-        blogs {
-          id
-          title
-          body
-        }
-      }`
+    menu: {
+      query: menu,
+      prefetch: true,
+      update(data) {
+        return data.topMenu.menu[0].items.item;
+      }
+    }
+
   }
 };
 </script>

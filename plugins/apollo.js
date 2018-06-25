@@ -1,9 +1,13 @@
 import { ApolloLink, concat, split } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import https from "https";
 export default ctx => {
   let link = new HttpLink({
-    uri: "http://localhost:7777/graphql"
+    uri: "https://headless-api.dev/graphql",
+    fetchOptions: {
+      agent: new https.Agent({ rejectUnauthorized: false })
+    }
   });
 
   // Create a WebSocket link:
