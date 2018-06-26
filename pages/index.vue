@@ -6,7 +6,6 @@
         <img src="/v.png" alt="Vuetify.js" class="mb-5" />
       </div>
       <v-card>
-        <div v-if="$apollo.loading">Loading...</div>
         <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
         <v-card-text v-for="item in menu" :key="item.id">
          <a :href="`pages/${item.pageInfo.slug}`">{{ item.label }}</a>

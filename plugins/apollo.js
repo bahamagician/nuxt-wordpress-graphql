@@ -4,7 +4,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import https from "https";
 export default ctx => {
   let link = new HttpLink({
-    uri: "https://headless-api.dev/graphql",
+    uri: "https://headless-wp.dev/graphql",
     fetchOptions: {
       agent: new https.Agent({ rejectUnauthorized: false })
     }
