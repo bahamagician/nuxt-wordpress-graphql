@@ -6,7 +6,7 @@
         <img src="/v.png" alt="Vuetify.js" class="mb-5" />
       </div>
       <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
+        <v-card-title class="headline">Single Page App Template</v-card-title>
         <v-card-text v-for="item in menu" :key="item.id">
           <nuxt-link :to="`pages/${item.pageInfo.slug}`">{{ item.label }}</nuxt-link>
         </v-card-text>
@@ -20,7 +20,8 @@ import menu from "~/apollo/queries/menu.gql"
 export default {
   data: () => {
     return {
-      menu: ''
+      menu: '',
+      title: 'Home'
     }
   },
   apollo: {
@@ -32,6 +33,15 @@ export default {
       }
     }
 
+  },
+
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: 'My custom description' }
+      ]
+    }
   }
 };
 </script>

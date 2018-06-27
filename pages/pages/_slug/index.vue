@@ -10,7 +10,7 @@ export default {
     data () {
         return {
             page: '',
-            routeParam: this.$route.params.slug
+            routeParam: this.$route.params.slug,
         }
 },
 apollo: {
@@ -30,8 +30,14 @@ apollo: {
         return data.pageBy;
       }
     }
-
-
+  },
+  head () {
+    return {
+      title: this.page.title,
+      meta: [
+        { hid: 'description', name: 'description', content: 'My custom description' }
+      ]
+    }
   }
 }
 </script>
