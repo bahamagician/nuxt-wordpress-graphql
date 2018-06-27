@@ -1,10 +1,7 @@
 <template>
     <div>
-        Whaps
-        <div v-if="$apollo.loading">Loading...</div>
-        <div v-else>
-            <p v-html="page.content"></p>
-        </div>
+        <h1>{{ page.title }}</h1>
+        <div v-html="page.content"></div>
     </div>
 </template>
 <script>
@@ -23,6 +20,11 @@ apollo: {
       variables() {
         return {
             page: this.routeParam
+        }
+      },
+      prefetch: ({ route }) => {
+        return {
+          page: route.params.slug,
         }
       },
       update(data) {
