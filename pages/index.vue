@@ -8,7 +8,7 @@
       <v-card>
         <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
         <v-card-text v-for="item in menu" :key="item.id">
-         <a :href="`pages/${item.pageInfo.slug}`">{{ item.label }}</a>
+          <nuxt-link :to="`pages/${item.pageInfo.slug}`">{{ item.label }}</nuxt-link>
         </v-card-text>
       </v-card>
     </v-flex>

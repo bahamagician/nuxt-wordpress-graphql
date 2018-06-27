@@ -16,10 +16,9 @@ export default {
 apollo: {
     page: {
       query: page,
-    //   prefetch: true,
       variables() {
         return {
-            page: this.routeParam
+            page: this.$route.params.slug
         }
       },
       prefetch: ({ route }) => {
