@@ -8,7 +8,12 @@
       <v-card>
         <v-card-title class="headline">Single Page App Template</v-card-title>
         <v-card-text v-for="item in menu" :key="item.id">
-          <nuxt-link :to="`pages/${item.pageInfo.slug}`">{{ item.label }}</nuxt-link>
+          <div v-if="item.pageInfo.slug">
+            <nuxt-link :to="`pages/${item.pageInfo.slug}`">{{ item.label }}</nuxt-link>
+          </div>
+          <div v-else>
+            <a :href="`${item.url}`">{{ item.label }}</a>
+          </div>
         </v-card-text>
       </v-card>
     </v-flex>

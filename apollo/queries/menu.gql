@@ -5,8 +5,8 @@
         item: nodes {
           id
           label
+          url
           pageInfo: connectedObject {
-            __typename
             ... on Page {
               slug
             }
