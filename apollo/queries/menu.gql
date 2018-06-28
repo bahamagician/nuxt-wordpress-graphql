@@ -6,6 +6,7 @@
           id
           label
           pageInfo: connectedObject {
+            __typename
             ... on Page {
               slug
             }

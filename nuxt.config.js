@@ -1,6 +1,6 @@
 const nodeExternals = require("webpack-node-externals");
 const resolve = dir => require("path").join(__dirname, dir);
-
+require("./plugins/fragments");
 module.exports = {
   /*
     ** Headers of the page

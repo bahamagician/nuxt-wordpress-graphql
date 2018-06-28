@@ -1,10 +1,18 @@
 import Vue from "vue";
 import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import {
+  IntrospectionFragmentMatcher,
+  InMemoryCache
+} from "apollo-cache-inmemory";
 import VueApollo from "vue-apollo";
 import "isomorphic-fetch";
 import https from "https";
+import introspectionQueryResultData from "~/fragmentTypes.json";
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData
+});
 
 const httpLink = new HttpLink({
   // You should use an absolute URL here
@@ -17,7 +25,7 @@ const httpLink = new HttpLink({
 // Create the apollo client
 const apolloClient = new ApolloClient({
   link: httpLink,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({ fragmentMatcher }),
   connectToDevTools: true
 });
 
