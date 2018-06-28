@@ -19,17 +19,16 @@ module.exports = {
         href:
           "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
       }
-      // 在国内，建议使用 https://fonts.cat.net/  替换
     ]
   },
-  modules: ["@nuxtjs/apollo", "nuxt-sass-resources-loader"],
-  apollo: {
-    clientConfigs: {
-      default: "~/plugins/apollo.js"
-    }
-  },
-  sassResources: ["@/assets/style/app.scss", "~/assets/style/app.scss"],
-  plugins: ["~/plugins/vuetify.js", "~/plugins/vuelidate.js"],
+  modules: ["nuxt-sass-resources-loader"],
+
+  sassResources: ["~/assets/style/app.scss", "~/assets/style/app.styl"],
+  plugins: [
+    { src: "~/plugins/apollo.js" },
+    "~/plugins/vuetify.js",
+    "~/plugins/vuelidate.js"
+  ],
   css: ["~/assets/style/app.styl"],
   devtool: "#eval-source-map",
   /*
@@ -59,6 +58,11 @@ module.exports = {
     vendor: ["vuetify", "graphql-tag"],
     extractCSS: true,
     extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: "graphql-tag/loader"
+      });
       if (ctx.isServer) {
         config.externals = [
           nodeExternals({
